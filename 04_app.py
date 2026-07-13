@@ -127,14 +127,6 @@ df = df[(df["_위도"] > 37.4) & (df["_위도"] < 37.7) & (df["_경도"] > 126.7
 with st.sidebar:
     st.markdown('<div class="section-title">필터</div>', unsafe_allow_html=True)
 
-    gu_options = sorted(df["_자치구"].unique().tolist())
-    selected_gu = st.multiselect(
-        "자치구",
-        options=gu_options,
-        default=gu_options[:3] if len(gu_options) > 3 else gu_options,
-        placeholder="자치구 선택"
-    )
-
     type_options = sorted(df["_구분"].unique().tolist())
     selected_type = st.multiselect(
         "주차장 종류",
@@ -152,7 +144,6 @@ with st.sidebar:
     <b>부설</b> — 건물 부속 주차장
     </div>
     """, unsafe_allow_html=True)
-
 # ── 필터 적용 ──
 filtered = df.copy()
 if selected_gu:
